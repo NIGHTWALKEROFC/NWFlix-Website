@@ -1,0 +1,71 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>NWMovie – watch your Telegram movies</title>
+  <meta name="description" content="NWMovie is an Android app that plays the movies from your own Telegram chats.">
+  <link rel="icon" href="assets/favicon.svg" type="image/svg+xml">
+  <link rel="stylesheet" href="style.css">
+</head>
+<body>
+
+  <header class="top">
+    <div class="wrap bar">
+      <a class="brand" href="./"><img src="assets/favicon.svg" alt="" width="28" height="28"> NWMovie</a>
+      <a class="small-link" href="#install">How to install</a>
+    </div>
+  </header>
+
+  <main>
+    <section class="hero wrap">
+      <h1>Your Telegram movies,<br>in one app.</h1>
+      <p class="lead">
+        NWMovie looks through the chats and channels you already have in Telegram, finds the movies and series,
+        and shows them with posters, ratings and details. Tap one to watch.
+      </p>
+
+      <a id="download" class="button" href="#" rel="noopener">Download for Android</a>
+      <p id="download-note" class="note">Checking the latest version…</p>
+
+      <details id="others" class="others">
+        <summary>Other versions</summary>
+        <ul id="others-list"></ul>
+      </details>
+    </section>
+
+    <section class="wrap about">
+      <h2>What it does</h2>
+      <ul class="plain">
+        <li><strong>Finds your movies.</strong> It reads the videos in your own Telegram account. Nothing is uploaded anywhere.</li>
+        <li><strong>Plays them straight away.</strong> Watch while it loads, or download a movie to keep it on your phone.</li>
+        <li><strong>Remembers where you stopped.</strong> Pick up a movie again from the same minute.</li>
+        <li><strong>Plays most formats.</strong> A second player is built in for files that the normal one can't open.</li>
+      </ul>
+    </section>
+
+    <section id="install" class="wrap about">
+      <h2>How to install</h2>
+      <ol class="plain">
+        <li>Tap <em>Download for Android</em> and open the file when it finishes.</li>
+        <li>If Android asks, allow installing apps from your browser. This is a one-time question.</li>
+        <li>Open NWMovie and sign in with your Telegram number.</li>
+      </ol>
+      <p class="note">
+        You need Android 7 or newer. Once installed, the app tells you when a new version is ready
+        and updates itself.
+      </p>
+    </section>
+  </main>
+
+  <footer class="wrap foot">
+    <p>Made by Mohammed Rinshan (NIGHTWALKER).</p>
+    <p class="tiny">
+      NWMovie is not affiliated with or endorsed by Telegram.
+      This product uses the TMDB API but is not endorsed or certified by TMDB.
+    </p>
+  </footer>
+
+  <script src="script.js"></script>
+</body>
+</html>
