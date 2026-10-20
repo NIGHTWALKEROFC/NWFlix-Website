@@ -1,5 +1,5 @@
 // Change this to your own GitHub "username/repository" (the one that holds the Releases).
-var REPO = "NIGHTWALKEROFC/NWMovie-App-Website";
+var REPO = "NIGHTWALKEROFC/NWFlix-Website";
 
 var FILES = {
   "arm64-v8a":   "app-arm64-v8a-release.apk",
