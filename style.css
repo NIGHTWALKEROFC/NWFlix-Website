@@ -1,18 +1,18 @@
 :root {
-  --bg: #fbfaf8;
+  --bg: #faf9ff;
   --text: #1d1d22;
   --muted: #62626b;
-  --line: #e4e1db;
-  --accent: #3b5bdb;
+  --line: #e3e0f0;
+  --accent: #6c4df0;
   --accent-text: #ffffff;
 }
 @media (prefers-color-scheme: dark) {
   :root {
-    --bg: #14151a;
-    --text: #ecebe8;
-    --muted: #a3a3ad;
-    --line: #2b2d36;
-    --accent: #7c93ff;
+    --bg: #07060f;
+    --text: #edebff;
+    --muted: #a7a3cc;
+    --line: #25213f;
+    --accent: #8b6cff;
     --accent-text: #10121a;
   }
 }
@@ -32,6 +32,7 @@ body {
 
 .top { border-bottom: 1px solid var(--line); }
 .bar { display: flex; align-items: center; justify-content: space-between; height: 56px; }
+.brand img { border-radius: 8px; }
 .brand { display: flex; align-items: center; gap: 10px; font-weight: 650; color: var(--text); text-decoration: none; }
 .small-link { color: var(--muted); font-size: 15px; text-decoration: none; }
 .small-link:hover { color: var(--text); }
