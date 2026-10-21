@@ -1,0 +1,89 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <meta name="robots" content="noindex,nofollow">
+  <title>NWFlix dashboard</title>
+  <link rel="icon" type="image/png" href="../assets/favicon-32.png">
+  <link rel="stylesheet" href="admin.css">
+</head>
+<body>
+  <div id="login" class="card login hidden">
+    <h2>NWFlix dashboard</h2>
+    <label for="email">Email</label>
+    <input id="email" type="email" autocomplete="username">
+    <label for="password">Password</label>
+    <input id="password" type="password" autocomplete="current-password">
+    <div class="actions"><button id="signin">Sign in</button></div>
+    <div class="msg bad" id="login-msg"></div>
+  </div>
+
+  <div id="app" class="hidden">
+    <header>
+      <img src="../assets/icon.png" alt="">
+      <h1>NWFlix dashboard</h1>
+      <span class="who" id="who"></span>
+      <button class="ghost" id="refresh">Refresh</button>
+      <button class="ghost" id="signout">Sign out</button>
+    </header>
+    <main>
+      <div class="grid">
+        <div class="stat live"><b id="s-live">–</b><span>Live now (last 12 min)</span></div>
+        <div class="stat"><b id="s-today">–</b><span>Active today</span></div>
+        <div class="stat"><b id="s-week">–</b><span>Active, last 7 days</span></div>
+        <div class="stat"><b id="s-new">–</b><span>New today</span></div>
+        <div class="stat"><b id="s-total">–</b><span>Total users</span></div>
+      </div>
+
+      <div class="card">
+        <h2>Maintenance mode</h2>
+        <p class="tiny" style="color:var(--muted);margin-top:0">When on, everybody who opens the app sees this message and cannot use it until you switch it off.</p>
+        <label class="check"><input type="checkbox" id="m-on"> Maintenance mode is on</label>
+        <label for="m-title">Title</label><input type="text" id="m-title" maxlength="80" placeholder="We'll be right back">
+        <label for="m-msg">Message</label><textarea id="m-msg" maxlength="400" placeholder="NWFlix is being updated. Please try again in a little while."></textarea>
+        <div class="actions"><button id="m-save">Save maintenance</button></div>
+        <div class="msg" id="m-out"></div>
+      </div>
+
+      <div class="card">
+        <h2>Send a message (pop-up)</h2>
+        <p style="color:var(--muted);margin-top:0">Shown once to each user the next time the app checks (within about 10 minutes of them opening it).</p>
+        <label for="a-title">Title</label><input type="text" id="a-title" maxlength="80">
+        <label for="a-msg">Message</label><textarea id="a-msg" maxlength="500"></textarea>
+        <div class="row">
+          <div><label for="a-btn">Button text (optional)</label><input type="text" id="a-btn" maxlength="30" placeholder="Update now"></div>
+          <div><label for="a-url">Button link (https://…)</label><input type="url" id="a-url" placeholder="https://"></div>
+        </div>
+        <div class="row3">
+          <div><label for="a-exp">Expires after (hours, 0 = never)</label><input type="number" id="a-exp" min="0" value="48"></div>
+          <div><label for="a-min">Only versions from (build code)</label><input type="number" id="a-min" min="0" value="0"></div>
+          <div><label for="a-max">Only versions up to (build code)</label><input type="number" id="a-max" min="0" value="0"></div>
+        </div>
+        <label for="a-country">Only these countries (codes like IN,AE — empty = everyone)</label>
+        <input type="text" id="a-country" placeholder="IN,AE,SA">
+        <label class="check"><input type="checkbox" id="a-dismiss" checked> User can close it without pressing the button</label>
+        <div class="actions"><button id="a-send">Send to users</button><button class="warn" id="a-clear">Remove current message</button></div>
+        <div class="msg" id="a-out"></div>
+        <p class="tiny" id="a-current" style="color:var(--muted)"></p>
+      </div>
+
+      <div class="grid" style="grid-template-columns:repeat(auto-fit,minmax(280px,1fr))">
+        <div class="card"><h2>App versions</h2><div class="bars" id="b-ver"></div></div>
+        <div class="card"><h2>Countries</h2><div class="bars" id="b-country"></div></div>
+        <div class="card"><h2>Android versions</h2><div class="bars" id="b-os"></div></div>
+      </div>
+      <p class="tiny" style="color:var(--muted);margin-top:-8px">The three charts use the 300 most recently active users.</p>
+
+      <div class="card">
+        <h2>Recent users</h2>
+        <div class="scroll"><table>
+          <thead><tr><th>Phone</th><th>Android</th><th>App</th><th>Country</th><th>Opens</th><th>Last seen</th></tr></thead>
+          <tbody id="t-users"></tbody>
+        </table></div>
+      </div>
+    </main>
+  </div>
+  <script type="module" src="app.js"></script>
+</body>
+</html>
