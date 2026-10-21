@@ -1,8 +1,6 @@
-// Paste your Firebase web app settings here (Firebase console → Project settings → Your apps → Web app → Config).
-// These values are not secret: the Firestore rules decide who can read and write.
 export const firebaseConfig = {
-  apiKey: "PASTE_API_KEY",
-  authDomain: "PASTE_PROJECT_ID.firebaseapp.com",
-  projectId: "PASTE_PROJECT_ID",
-  appId: "PASTE_APP_ID"
+  apiKey: "AIzaSyB1k7Js9TtR-NHriFYAC3EfAnxN-uPPUFc",
+  authDomain: "nwflix-4ea44.firebaseapp.com",
+  projectId: "nwflix-4ea44",
+  appId: "1:277538993543:web:b2521848009f7be4604f22"
 };
