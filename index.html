@@ -6,10 +6,8 @@
   <title>NWFlix – watch your Telegram movies</title>
   <meta name="description" content="NWFlix is an Android app that plays the movies from your own Telegram chats.">
   <link rel="icon" type="image/png" sizes="32x32" href="assets/favicon-32.png">
-  <link rel="icon" href="favicon.ico" sizes="any">
   <link rel="apple-touch-icon" href="assets/apple-touch-icon.png">
   <meta name="theme-color" content="#07060f">
-
   <meta property="og:type" content="website">
   <meta property="og:site_name" content="NWFlix">
   <meta property="og:title" content="NWFlix – watch your Telegram movies">
@@ -23,35 +21,28 @@
   <link rel="stylesheet" href="style.css">
 </head>
 <body>
-
   <header class="top">
     <div class="wrap bar">
       <a class="brand" href="./"><img src="assets/icon.png" alt="" width="30" height="30"> NWFlix</a>
-      <a class="small-link" href="#install">How to install</a>
+      <nav class="nav"><a href="privacy.html">Privacy</a><a href="terms.html">Terms</a></nav>
     </div>
   </header>
 
   <main>
     <section class="hero wrap">
       <h1>Your Telegram movies,<br>in one app.</h1>
-      <p class="lead">
-        NWFlix looks through the chats and channels you already have in Telegram, finds the movies and series,
-        and shows them with posters, ratings and details. Tap one to watch.
-      </p>
-
-      <a id="download" class="button" href="#" rel="noopener">Download for Android</a>
-      <p id="download-note" class="note">Checking the latest version…</p>
-
-      <details id="others" class="others">
-        <summary>Other versions</summary>
-        <ul id="others-list"></ul>
-      </details>
+      <p class="lead">NWFlix looks through the chats and channels you already have in Telegram, finds the movies and series, and shows them with posters, ratings and details. Tap one to watch.</p>
+      <div class="actions">
+        <button class="btn btn-primary" id="download" type="button"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M12 3v12m0 0l-4-4m4 4l4-4M5 21h14"/></svg> Download for Android</button>
+        <button class="btn btn-ghost" id="help" type="button"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="9"/><path d="M9.5 9.5a2.5 2.5 0 015 .5c0 1.7-2.5 2-2.5 3.5M12 17h.01"/></svg> Having trouble?</button>
+      </div>
+      <p class="note" id="release-note">Free · Android 7 or newer</p>
     </section>
 
     <section class="wrap about">
       <h2>What it does</h2>
       <ul class="plain">
-        <li><strong>Finds your movies.</strong> It reads the videos in your own Telegram account. Nothing is uploaded anywhere.</li>
+        <li><strong>Finds your movies.</strong> It reads the videos in your own Telegram account. Nothing is uploaded.</li>
         <li><strong>Plays them straight away.</strong> Watch while it loads, or download a movie to keep it on your phone.</li>
         <li><strong>Remembers where you stopped.</strong> Pick up a movie again from the same minute.</li>
         <li><strong>Plays most formats.</strong> A second player is built in for files that the normal one can't open.</li>
@@ -61,24 +52,77 @@
     <section id="install" class="wrap about">
       <h2>How to install</h2>
       <ol class="plain">
-        <li>Tap <em>Download for Android</em> and open the file when it finishes.</li>
-        <li>If Android asks, allow installing apps from your browser. This is a one-time question.</li>
+        <li>Tap <em>Download for Android</em>. We pick the right file for your phone.</li>
+        <li>Open the file when it finishes. If Android asks, allow installing apps from your browser (one time).</li>
         <li>Open NWFlix and sign in with your Telegram number.</li>
       </ol>
-      <p class="note">
-        You need Android 7 or newer. Once installed, the app tells you when a new version is ready
-        and updates itself.
-      </p>
+      <p class="note">NWFlix does not contain any movies. It only shows the files that are already in your Telegram. Use it only with content you are allowed to watch.</p>
     </section>
   </main>
-
   <footer class="wrap foot">
+    <p class="links"><a href="privacy.html">Privacy Policy</a><a href="terms.html">Terms &amp; Conditions</a><a href="disclaimer.html">Disclaimer &amp; Copyright</a></p>
     <p>Made by Mohammed Rinshan (NIGHTWALKER).</p>
-    <p class="tiny">
-      NWFlix is not affiliated with or endorsed by Telegram.
-      This product uses the TMDB API but is not endorsed or certified by TMDB.
-    </p>
+    <p class="tiny">NWFlix is not affiliated with or endorsed by Telegram. This product uses the TMDB API but is not endorsed or certified by TMDB. NWFlix does not host any movies.</p>
   </footer>
+
+  <!-- download dialog -->
+  <div class="overlay" id="dl-overlay" role="dialog" aria-modal="true" aria-labelledby="dl-title">
+    <div class="modal">
+      <button class="close" type="button" data-close aria-label="Close">&times;</button>
+      <h3 id="dl-title">Download NWFlix</h3>
+
+      <div id="p-check" class="panel"><p><span class="spin"></span>Checking your phone…</p></div>
+
+      <div id="p-result" class="panel hidden">
+        <p id="r-intro">We found your phone.</p>
+        <div class="result"><strong id="r-title"></strong><span id="r-detail" class="tiny"></span></div>
+        <a class="btn btn-primary btn-block" id="r-download" href="#"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M12 3v12m0 0l-4-4m4 4l4-4M5 21h14"/></svg> Download</a>
+        <p class="note" id="r-hint">If Android says “App not installed”, go back and choose the other version.</p>
+        <button class="btn btn-ghost btn-block" type="button" data-go="manual">Choose another version</button>
+      </div>
+
+      <div id="p-version" class="panel hidden">
+        <p>We couldn't read your phone's details. Which Android version does it have?</p>
+        <div class="stack">
+          <button class="btn btn-ghost choice" type="button" data-version="new">Android 10 or newer<small>Most phones from 2019 on</small></button>
+          <button class="btn btn-ghost choice" type="button" data-version="old">Android 9 or older<small>Older phones</small></button>
+          <button class="btn btn-ghost choice" type="button" data-go="phone">I don't know<small>Type your phone's name and we'll look it up</small></button>
+        </div>
+      </div>
+
+      <div id="p-phone" class="panel hidden">
+        <p>Type your phone's name, for example “Samsung Galaxy A54” or “Redmi Note 11”.</p>
+        <input class="field" id="phone-name" type="text" placeholder="Phone name" autocomplete="off">
+        <button class="btn btn-primary btn-block" id="phone-find" type="button">Find my phone</button>
+        <p class="note hidden" id="phone-msg"></p>
+        <button class="btn btn-ghost btn-block" style="margin-top:10px" type="button" data-go="manual">Choose a version myself</button>
+      </div>
+
+      <div id="p-manual" class="panel hidden">
+        <p>Pick the one that fits. If you aren't sure, choose “64-bit”: it suits almost every phone made after 2018.</p>
+        <div class="stack" id="manual-list"></div>
+      </div>
+
+      <div id="p-desktop" class="panel hidden">
+        <p>NWFlix is an Android app. Open this page on your Android phone to install it. If you only want the file, pick a version below.</p>
+        <button class="btn btn-ghost btn-block" type="button" data-go="manual">Show the files</button>
+      </div>
+    </div>
+  </div>
+
+  <!-- trouble dialog -->
+  <div class="overlay" id="help-overlay" role="dialog" aria-modal="true" aria-labelledby="help-title">
+    <div class="modal">
+      <button class="close" type="button" data-close aria-label="Close">&times;</button>
+      <h3 id="help-title">How would you like to reach me?</h3>
+      <p>Tell me what went wrong (your phone model and what you saw helps) and I'll help you.</p>
+      <div class="stack">
+        <a class="btn btn-primary btn-block" href="https://instagram.com/nightwalker.ofc" target="_blank" rel="noopener"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><rect x="3" y="3" width="18" height="18" rx="5"/><circle cx="12" cy="12" r="4"/><circle cx="17.5" cy="6.5" r="1"/></svg> Instagram</a>
+        <a class="btn btn-primary btn-block" href="https://t.me/nightwalker_ofc" target="_blank" rel="noopener"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M21 4L3 11l6 2m12-9l-3 15-6-6m9-9L9 13m0 0v6l3-3"/></svg> Telegram</a>
+        <a class="btn btn-primary btn-block" href="mailto:rinshan602@gmail.com?subject=NWFlix%20help"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><rect x="3" y="5" width="18" height="14" rx="2"/><path d="M3 7l9 6 9-6"/></svg> Email</a>
+      </div>
+    </div>
+  </div>
 
   <script src="script.js"></script>
 </body>
