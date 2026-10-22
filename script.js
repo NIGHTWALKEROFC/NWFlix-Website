@@ -12,12 +12,18 @@ var LABELS = {
   "x86_64": { name: "Emulators and Intel devices", note: "PC emulators, some Chromebooks" }
 };
 
+var FILES_SET = {};
+Object.keys(FILES).forEach(function (k) { FILES_SET[FILES[k]] = true; });
 var release = { tag: "", assets: {} };
 var $ = function (id) { return document.getElementById(id); };
 
 function mb(bytes) { return (bytes / 1048576).toFixed(0) + " MB"; }
 function fallbackUrl(abi) { return "https://github.com/" + REPO + "/releases/latest/download/" + FILES[abi]; }
-function fileUrl(abi) { var a = release.assets[FILES[abi]]; return a ? a.browser_download_url : fallbackUrl(abi); }
+function fileUrl(abi) {
+  var a = release.assets[FILES[abi]];
+  var u = a ? a.browser_download_url : "";
+  return (typeof u === "string" && u.indexOf("https://github.com/" + REPO + "/") === 0) ? u : fallbackUrl(abi);
+}
 function fileSize(abi) { var a = release.assets[FILES[abi]]; return a ? " · " + mb(a.size) : ""; }
 
 // ---------------------------------------------------------------- release info
@@ -25,8 +31,8 @@ fetch("https://api.github.com/repos/" + REPO + "/releases/latest")
   .then(function (r) { if (!r.ok) throw new Error("no release"); return r.json(); })
   .then(function (rel) {
     release.tag = rel.tag_name || "";
-    (rel.assets || []).forEach(function (a) { release.assets[a.name] = a; });
-    if (release.tag) $("release-note").textContent = "Version " + release.tag.replace(/^v/i, "") + " · Free · Android 7 or newer";
+    (rel.assets || []).forEach(function (a) { if (a && typeof a.name === "string" && FILES_SET[a.name]) release.assets[a.name] = a; });
+    if (release.tag && /^v?[0-9A-Za-z.\-]{1,20}$/.test(release.tag)) $("release-note").textContent = "Version " + release.tag.replace(/^v/i, "") + " · Free · Android 7 or newer";
   })
   .catch(function () { /* the download buttons still work with the "latest" link */ });
 
