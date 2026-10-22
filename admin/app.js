@@ -40,14 +40,15 @@ function bars(id, map) {
 
 async function load() {
   const midnight = new Date(); midnight.setHours(0, 0, 0, 0);
-  const [live, today, week, fresh, total] = await Promise.all([
+  const [live, today, week, month, fresh, total] = await Promise.all([
     count(query(users, where("lastSeen", ">", since(12 * 60e3)))),
     count(query(users, where("lastSeen", ">", Timestamp.fromDate(midnight)))),
     count(query(users, where("lastSeen", ">", since(7 * 86400e3)))),
+    count(query(users, where("lastSeen", ">", since(30 * 86400e3)))),
     count(query(users, where("firstSeen", ">", Timestamp.fromDate(midnight)))),
     count(users)
   ]);
-  $("s-live").textContent = live; $("s-today").textContent = today; $("s-week").textContent = week;
+  $("s-live").textContent = live; $("s-today").textContent = today; $("s-week").textContent = week; $("s-month").textContent = month;
   $("s-new").textContent = fresh; $("s-total").textContent = total;
 
   const snap = await getDocs(query(users, orderBy("lastSeen", "desc"), limit(300)));
