@@ -115,7 +115,7 @@ $("a-send").onclick = async () => {
       annMinVersion: parseInt($("a-min").value || "0", 10), annMaxVersion: parseInt($("a-max").value || "0", 10),
       annCountry: $("a-country").value.trim().toUpperCase()
     });
-    say("a-out", "Sent. Users see it the next time the app checks.", true);
+    say("a-out", "Sent. Phones with the app open get it within about 20 seconds. Others get it the next time they open the app.", true);
     load();
   } catch (e) { say("a-out", "Could not send: " + (e.code || e.message), false); }
 };
@@ -147,7 +147,7 @@ $("u-publish").onclick = async () => {
       updName: name, updCode: code, updNotes: $("u-notes").value.trim(), updForce: $("u-force").checked,
       updArm64: a64, updArm32: a32, updX86: x86, updAt: Timestamp.now()
     });
-    say("u-out", "Update published. Users see it the next time the app checks (within about 10 minutes of opening it).", true);
+    say("u-out", "Update published. Phones with the app open get it within about 20 seconds. Others get it the next time they open the app.", true);
     load();
   } catch (e) { say("u-out", "Could not publish: " + (e.code || e.message), false); }
 };
