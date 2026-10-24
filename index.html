@@ -3,7 +3,7 @@
 <head>
   <meta charset="utf-8">
   <meta name="viewport" content="width=device-width, initial-scale=1">
-  <meta http-equiv="Content-Security-Policy" content="default-src 'self'; script-src 'self'; style-src 'self' 'unsafe-inline'; img-src 'self' data:; font-src 'self'; connect-src https://api.github.com https://en.wikipedia.org; base-uri 'none'; form-action 'none'; object-src 'none'">
+  <meta http-equiv="Content-Security-Policy" content="default-src 'self'; script-src 'self'; style-src 'self' 'unsafe-inline'; img-src 'self' data:; font-src 'self'; connect-src https://firestore.googleapis.com https://en.wikipedia.org; base-uri 'none'; form-action 'none'; object-src 'none'">
   <meta name="referrer" content="strict-origin-when-cross-origin">
   <title>NWFlix – watch your Telegram movies</title>
   <meta name="description" content="NWFlix is an Android app that plays the movies from your own Telegram chats.">
@@ -54,7 +54,7 @@
     <section id="install" class="wrap about">
       <h2>How to install</h2>
       <ol class="plain">
-        <li>Tap <em>Download for Android</em>. We pick the right file for your phone.</li>
+        <li>Tap <em>Download for Android</em>. We pick the right file for your phone and start the download.</li>
         <li>Open the file when it finishes. If Android asks, allow installing apps from your browser (one time).</li>
         <li>Open NWFlix and sign in with your Telegram number.</li>
       </ol>
@@ -78,8 +78,8 @@
       <div id="p-result" class="panel hidden">
         <p id="r-intro">We found your phone.</p>
         <div class="result"><strong id="r-title"></strong><span id="r-detail" class="tiny"></span></div>
-        <a class="btn btn-primary btn-block" id="r-download" href="#"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M12 3v12m0 0l-4-4m4 4l4-4M5 21h14"/></svg> Download</a>
-        <p class="note" id="r-hint">If Android says “App not installed”, go back and choose the other version.</p>
+        <a class="btn btn-primary btn-block" id="r-download" href="#"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M12 3v12m0 0l-4-4m4 4l4-4M5 21h14"/></svg> Download again</a>
+        <p class="note" id="r-hint">When the file finishes, open it. If Android asks, tap Settings, switch on “Allow from this source”, go back and tap Install. If it says “App not installed”, choose another version.</p>
         <button class="btn btn-ghost btn-block" type="button" data-go="manual">Choose another version</button>
       </div>
 
@@ -103,6 +103,10 @@
       <div id="p-manual" class="panel hidden">
         <p>Pick the one that fits. If you aren't sure, choose “64-bit”: it suits almost every phone made after 2018.</p>
         <div class="stack" id="manual-list"></div>
+      </div>
+
+      <div id="p-missing" class="panel hidden">
+        <p>The download isn't ready yet. Please try again in a little while.</p>
       </div>
 
       <div id="p-desktop" class="panel hidden">
