@@ -3,7 +3,7 @@
 <head>
   <meta charset="utf-8">
   <meta name="viewport" content="width=device-width, initial-scale=1">
-  <meta http-equiv="Content-Security-Policy" content="default-src 'self'; script-src 'self'; style-src 'self' 'unsafe-inline'; img-src 'self' data:; font-src 'self'; connect-src https://api.github.com https://en.wikipedia.org; base-uri 'none'; form-action 'none'; object-src 'none'">
+  <meta http-equiv="Content-Security-Policy" content="default-src 'self'; script-src 'self'; style-src 'self' 'unsafe-inline'; img-src 'self' data:; font-src 'self'; connect-src https://firestore.googleapis.com https://en.wikipedia.org; base-uri 'none'; form-action 'none'; object-src 'none'">
   <meta name="referrer" content="strict-origin-when-cross-origin">
   <title>Privacy Policy – NWFlix</title>
   <meta name="description" content="Privacy Policy for the NWFlix app.">
@@ -43,7 +43,7 @@
   <h2>4. Information sent to other services</h2>
   <p>Telegram: the app connects to Telegram to log you in, list your chats and stream the files you choose. Telegram&#x27;s own privacy policy applies to that.</p>
   <p>TMDB (The Movie Database): to show posters and details, the app sends the cleaned-up movie title and year taken from a file name to TMDB. No account details are sent. TMDB&#x27;s privacy policy applies.</p>
-  <p>GitHub: update checks and downloads are served from GitHub. GitHub can see your IP address when you check for or download an update.</p>
+  <p>App updates: the update details come from Google Firebase, and the update file is downloaded from the link the developer sets (for example GitHub). The host of that link can see your IP address when you download an update.</p>
   <h2>5. Google sign-in and usage statistics</h2>
   <p>To use NWFlix you sign in with your Google account (one tap, no password). This is used to count real users and to be able to contact users with important notices.</p>
   <p>When you sign in, Google and Google Firebase give the developer your Google account email address and a random account ID. Nothing else from your Google account is read.</p>
@@ -51,7 +51,7 @@
   <p>It never includes your Telegram number or username, chat names, file names, movie titles or what you watch.</p>
   <p>You can switch the statistics off at any time in Settings → Privacy &amp; Security → Share anonymous usage statistics, and sign out of Google in Settings → Account &amp; Security. Signing out stops the records.</p>
   <h2>6. The download website</h2>
-  <p>The website only serves the app file and these documents. It does not use cookies or analytics. The download page loads release information from GitHub. If you type your phone&#x27;s name to find the right file, that name is sent to Wikipedia to look it up. GitHub and Wikipedia can see your IP address when this happens.</p>
+  <p>The website only serves the app file and these documents. It does not use cookies or analytics. The download page loads the current version and file links from Google Firebase. If you type your phone&#x27;s name to find the right file, that name is sent to Wikipedia to look it up. Google and Wikipedia can see your IP address when this happens.</p>
   <h2>7. Messages from the developer</h2>
   <p>The app checks a small public notice from time to time. It can show a message (for example about an update) or tell you the app is under maintenance. This notice is the same for everyone and does not use your personal information.</p>
   <h2>8. Your choices and deleting data</h2>
@@ -60,7 +60,7 @@
   <h2>9. Children</h2>
   <p>NWFlix is not meant for children under 13 (or under the age required by Telegram in your country). Do not use the app if you are below that age.</p>
   <h2>10. Security</h2>
-  <p>Sensitive keys are stored in the Android Keystore. Updates are checked with a digital signature before they are installed. No system that connects to the internet can be made 100 percent secure.</p>
+  <p>Sensitive keys are stored in the Android Keystore. An update is only installed if it is signed with the developer&#x27;s key, and Android refuses any update signed by someone else. No system that connects to the internet can be made 100 percent secure.</p>
   <h2>11. Changes to this policy</h2>
   <p>This policy may change when the app changes. The date at the top shows when it was last updated (October 2026). Continuing to use the app after a change means you accept the new policy.</p>
   <p><a href="./">&larr; Back to NWFlix</a></p>
