@@ -151,6 +151,18 @@ $("u-publish").onclick = async () => {
     load();
   } catch (e) { say("u-out", "Could not publish: " + (e.code || e.message), false); }
 };
+$("u-links").onclick = async () => {
+  const a64 = $("u-arm64").value.trim(), a32 = $("u-arm32").value.trim(), x86 = $("u-x86").value.trim();
+  const s64 = $("u-sha64").value.trim().toLowerCase(), s32 = $("u-sha32").value.trim().toLowerCase(), sx = $("u-shax").value.trim().toLowerCase();
+  if (!a64 && !a32 && !x86) { say("u-out", "Add at least one download link.", false); return; }
+  if (!linkOk(a64) || !linkOk(a32) || !linkOk(x86)) { say("u-out", "Every link must start with https://", false); return; }
+  if (!shaOk(s64) || !shaOk(s32) || !shaOk(sx)) { say("u-out", "A SHA-256 must be exactly 64 letters and numbers, or left empty.", false); return; }
+  try {
+    await saveConfig({ updArm64: a64, updArm32: a32, updX86: x86, updSha64: s64, updSha32: s32, updShaX86: sx });
+    say("u-out", "Links saved. The version, notes and force setting were not changed.", true);
+    load();
+  } catch (e) { say("u-out", "Could not save: " + (e.code || e.message), false); }
+};
 async function setForce(on) {
   try {
     await saveConfig({ updForce: on });
