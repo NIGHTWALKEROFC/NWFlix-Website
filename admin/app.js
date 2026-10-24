@@ -74,6 +74,14 @@ async function load() {
   $("m-on").checked = !!d.maintenanceOn;
   $("m-title").value = d.maintenanceTitle || "";
   $("m-msg").value = d.maintenanceMessage || "";
+  $("u-current").textContent = d.updCode
+    ? "Published: version " + (d.updName || d.updCode) + " (code " + d.updCode + ")" + (d.updForce ? " - FORCED" : "") + ". 64-bit link: " + (d.updArm64 ? "yes" : "no") + ", 32-bit link: " + (d.updArm32 ? "yes" : "no") + "."
+    : "No update is published.";
+  if (d.updCode && !$("u-name").value) {
+    $("u-name").value = d.updName || ""; $("u-code").value = d.updCode; $("u-notes").value = d.updNotes || "";
+    $("u-arm64").value = d.updArm64 || ""; $("u-arm32").value = d.updArm32 || ""; $("u-x86").value = d.updX86 || "";
+    $("u-force").checked = !!d.updForce;
+  }
   $("a-current").textContent = d.annId ? 'Current message: "' + (d.annTitle || "") + '" (id ' + d.annId + ')' : "No message is active.";
 }
 
@@ -113,6 +121,49 @@ $("a-send").onclick = async () => {
 $("a-clear").onclick = async () => {
   try { await saveConfig({ annId: "" }); say("a-out", "Message removed.", true); load(); }
   catch (e) { say("a-out", "Could not remove: " + (e.code || e.message), false); }
+};
+
+function codeFor(name) {
+  const n = name.split(".").map((x) => parseInt(x.replace(/\D/g, ""), 10) || 0);
+  return (n[0] || 0) * 1000000 + (n[1] || 0) * 1000 + (n[2] || 0);
+}
+$("u-name").oninput = () => { $("u-code").value = codeFor($("u-name").value.trim()) || ""; };
+
+function linkOk(v) { return !v || v.startsWith("https://"); }
+
+$("u-publish").onclick = async () => {
+  const name = $("u-name").value.trim(), code = parseInt($("u-code").value || "0", 10);
+  const a64 = $("u-arm64").value.trim(), a32 = $("u-arm32").value.trim(), x86 = $("u-x86").value.trim();
+  if (!name || !code) { say("u-out", "Type the version name first.", false); return; }
+  if (!a64 && !a32 && !x86) { say("u-out", "Add at least one download link.", false); return; }
+  if (!linkOk(a64) || !linkOk(a32) || !linkOk(x86)) { say("u-out", "Every link must start with https://", false); return; }
+  try {
+    await saveConfig({
+      updName: name, updCode: code, updNotes: $("u-notes").value.trim(), updForce: $("u-force").checked,
+      updArm64: a64, updArm32: a32, updX86: x86, updAt: Timestamp.now()
+    });
+    say("u-out", "Update published. Users see it the next time the app checks (within about 10 minutes of opening it).", true);
+    load();
+  } catch (e) { say("u-out", "Could not publish: " + (e.code || e.message), false); }
+};
+async function setForce(on) {
+  try {
+    await saveConfig({ updForce: on });
+    $("u-force").checked = on;
+    say("u-out", on ? "Force update is ON for the published version." : "Force update is removed.", true);
+    load();
+  } catch (e) { say("u-out", "Could not save: " + (e.code || e.message), false); }
+}
+$("u-forceon").onclick = () => setForce(true);
+$("u-forceoff").onclick = () => setForce(false);
+$("u-remove").onclick = async () => {
+  try {
+    await saveConfig({ updCode: 0, updName: "", updNotes: "", updForce: false, updArm64: "", updArm32: "", updX86: "" });
+    ["u-name", "u-code", "u-notes", "u-arm64", "u-arm32", "u-x86"].forEach((i) => { $(i).value = ""; });
+    $("u-force").checked = false;
+    say("u-out", "Update removed.", true);
+    load();
+  } catch (e) { say("u-out", "Could not remove: " + (e.code || e.message), false); }
 };
 
 onAuthStateChanged(auth, (user) => {
