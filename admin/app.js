@@ -80,6 +80,7 @@ async function load() {
   if (d.updCode && !$("u-name").value) {
     $("u-name").value = d.updName || ""; $("u-code").value = d.updCode; $("u-notes").value = d.updNotes || "";
     $("u-arm64").value = d.updArm64 || ""; $("u-arm32").value = d.updArm32 || ""; $("u-x86").value = d.updX86 || "";
+    $("u-sha64").value = d.updSha64 || ""; $("u-sha32").value = d.updSha32 || ""; $("u-shax").value = d.updShaX86 || "";
     $("u-force").checked = !!d.updForce;
   }
   $("a-current").textContent = d.annId ? 'Current message: "' + (d.annTitle || "") + '" (id ' + d.annId + ')' : "No message is active.";
@@ -130,6 +131,7 @@ function codeFor(name) {
 $("u-name").oninput = () => { $("u-code").value = codeFor($("u-name").value.trim()) || ""; };
 
 function linkOk(v) { return !v || v.startsWith("https://"); }
+function shaOk(v) { return !v || /^[0-9a-fA-F]{64}$/.test(v); }
 
 $("u-publish").onclick = async () => {
   const name = $("u-name").value.trim(), code = parseInt($("u-code").value || "0", 10);
@@ -137,8 +139,11 @@ $("u-publish").onclick = async () => {
   if (!name || !code) { say("u-out", "Type the version name first.", false); return; }
   if (!a64 && !a32 && !x86) { say("u-out", "Add at least one download link.", false); return; }
   if (!linkOk(a64) || !linkOk(a32) || !linkOk(x86)) { say("u-out", "Every link must start with https://", false); return; }
+  const s64 = $("u-sha64").value.trim().toLowerCase(), s32 = $("u-sha32").value.trim().toLowerCase(), sx = $("u-shax").value.trim().toLowerCase();
+  if (!shaOk(s64) || !shaOk(s32) || !shaOk(sx)) { say("u-out", "A SHA-256 must be exactly 64 letters and numbers, or left empty.", false); return; }
   try {
     await saveConfig({
+      updSha64: s64, updSha32: s32, updShaX86: sx,
       updName: name, updCode: code, updNotes: $("u-notes").value.trim(), updForce: $("u-force").checked,
       updArm64: a64, updArm32: a32, updX86: x86, updAt: Timestamp.now()
     });
@@ -158,8 +163,8 @@ $("u-forceon").onclick = () => setForce(true);
 $("u-forceoff").onclick = () => setForce(false);
 $("u-remove").onclick = async () => {
   try {
-    await saveConfig({ updCode: 0, updName: "", updNotes: "", updForce: false, updArm64: "", updArm32: "", updX86: "" });
-    ["u-name", "u-code", "u-notes", "u-arm64", "u-arm32", "u-x86"].forEach((i) => { $(i).value = ""; });
+    await saveConfig({ updCode: 0, updName: "", updNotes: "", updForce: false, updArm64: "", updArm32: "", updX86: "", updSha64: "", updSha32: "", updShaX86: "" });
+    ["u-name", "u-code", "u-notes", "u-arm64", "u-arm32", "u-x86", "u-sha64", "u-sha32", "u-shax"].forEach((i) => { $(i).value = ""; });
     $("u-force").checked = false;
     say("u-out", "Update removed.", true);
     load();
