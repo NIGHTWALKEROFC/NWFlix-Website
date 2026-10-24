@@ -40,6 +40,28 @@
       </div>
 
       <div class="card">
+        <h2>App update</h2>
+        <p class="tiny" style="color:var(--muted);margin-top:0">Users get a pop-up with Update now / Not now. The app picks the right file for each phone. The same links are used by the download button on the website.</p>
+        <div class="row">
+          <div><label for="u-name">Version name (like 1.1)</label><input type="text" id="u-name" maxlength="20" placeholder="1.1"></div>
+          <div><label for="u-code">Version code (filled automatically)</label><input type="number" id="u-code" min="1"></div>
+        </div>
+        <label for="u-notes">What's new</label><textarea id="u-notes" maxlength="500"></textarea>
+        <label for="u-arm64">Download link: 64-bit phones (arm64-v8a)</label><input type="url" id="u-arm64" placeholder="https://">
+        <label for="u-arm32">Download link: 32-bit phones (armeabi-v7a)</label><input type="url" id="u-arm32" placeholder="https://">
+        <label for="u-x86">Download link: emulators and Intel (x86_64, optional)</label><input type="url" id="u-x86" placeholder="https://">
+        <label class="check"><input type="checkbox" id="u-force"> Force update (users cannot use the app until they update)</label>
+        <div class="actions">
+          <button id="u-publish">Publish update</button>
+          <button class="warn" id="u-forceon">Force update now</button>
+          <button class="ghost" id="u-forceoff">Remove force</button>
+          <button class="warn" id="u-remove">Remove update</button>
+        </div>
+        <div class="msg" id="u-out"></div>
+        <p class="tiny" id="u-current" style="color:var(--muted)"></p>
+      </div>
+
+      <div class="card">
         <h2>Maintenance mode</h2>
         <p class="tiny" style="color:var(--muted);margin-top:0">When on, everybody who opens the app sees this message and cannot use it until you switch it off.</p>
         <label class="check"><input type="checkbox" id="m-on"> Maintenance mode is on</label>
