@@ -66,8 +66,8 @@
       </div>
 
       <div class="card">
-        <h2>Maintenance mode</h2>
-        <p class="tiny" style="color:var(--muted);margin-top:0">When on, everybody who opens the app sees this message and cannot use it until you switch it off.</p>
+        <h2>Maintenance mode - Android app</h2>
+        <p class="tiny" style="color:var(--muted);margin-top:0">When on, everybody who opens the Android app sees this message and cannot use it until you switch it off. The iOS web app is not affected.</p>
         <label class="check"><input type="checkbox" id="m-on"> Maintenance mode is on</label>
         <label for="m-title">Title</label><input type="text" id="m-title" maxlength="80" placeholder="We'll be right back">
         <label for="m-msg">Message</label><textarea id="m-msg" maxlength="400" placeholder="NWFlix is being updated. Please try again in a little while."></textarea>
@@ -76,8 +76,18 @@
       </div>
 
       <div class="card">
+        <h2>Maintenance mode - iOS web app</h2>
+        <p class="tiny" style="color:var(--muted);margin-top:0">When on, everybody who opens the NWFlix iOS web app sees this message and cannot use it until you switch it off. The Android app is not affected.</p>
+        <label class="check"><input type="checkbox" id="mi-on"> Maintenance mode is on</label>
+        <label for="mi-title">Title</label><input type="text" id="mi-title" maxlength="80" placeholder="We'll be right back">
+        <label for="mi-msg">Message</label><textarea id="mi-msg" maxlength="400" placeholder="NWFlix iOS is being updated. Please try again in a little while."></textarea>
+        <div class="actions"><button id="mi-save">Save</button></div>
+        <div class="msg" id="mi-out"></div>
+      </div>
+
+      <div class="card">
         <h2>Send a message (pop-up)</h2>
-        <p style="color:var(--muted);margin-top:0">Shown once to each user. Phones with the app open get it within about 20 seconds; others get it when they next open the app.</p>
+        <p style="color:var(--muted);margin-top:0">Shown once to each user, in both the Android app and the iOS web app. Phones with the app open get it within about 20 seconds; others get it when they next open the app.</p>
         <label for="a-title">Title</label><input type="text" id="a-title" maxlength="80">
         <label for="a-msg">Message</label><textarea id="a-msg" maxlength="500"></textarea>
         <div class="row">
