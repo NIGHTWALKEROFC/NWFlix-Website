@@ -25,33 +25,73 @@
 <body>
   <header class="top">
     <div class="wrap bar">
-      <a class="brand" href="./"><img src="assets/icon.png" alt="" width="30" height="30"> NWFlix</a>
-      <nav class="nav"><a href="privacy.html">Privacy</a><a href="terms.html">Terms</a></nav>
+      <a class="brand" href="./"><img src="assets/icon.png" alt="" width="28" height="28"> NWFlix</a>
+      <nav class="nav"><a href="#about">About</a><a href="#install">Install</a><a href="privacy.html">Privacy</a><a href="terms.html">Terms</a></nav>
     </div>
   </header>
 
   <main>
-    <section class="hero wrap">
-      <h1>Your Telegram movies,<br>in one app.</h1>
-      <p class="lead">NWFlix looks through the chats and channels you already have in Telegram, finds the movies and series, and shows them with posters, ratings and details. Tap one to watch.</p>
+    <section class="wrap listing">
+      <div class="head">
+        <img class="appicon" src="assets/icon.png" width="112" height="112" alt="NWFlix app icon">
+        <div class="title">
+          <h1>NWFlix</h1>
+          <p class="dev">Mohammed Rinshan (NIGHTWALKER)</p>
+          <p class="tag">Movies and series from your own Telegram chats</p>
+        </div>
+      </div>
+
+      <div class="facts">
+        <div><b>Free</b><span>Price</span></div>
+        <div><b>Android 7+</b><span>Works on</span></div>
+        <div><b>Telegram</b><span>Works with</span></div>
+        <div><b>Movies &amp; series</b><span>Category</span></div>
+      </div>
+
       <div class="actions">
-        <button class="btn btn-primary" id="download" type="button"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M12 3v12m0 0l-4-4m4 4l4-4M5 21h14"/></svg> Download for Android</button>
-        <button class="btn btn-ghost" id="help" type="button"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="9"/><path d="M9.5 9.5a2.5 2.5 0 015 .5c0 1.7-2.5 2-2.5 3.5M12 17h.01"/></svg> Having trouble?</button>
+        <button class="btn btn-primary" id="download" type="button"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M12 3v12m0 0l-4-4m4 4l4-4M5 21h14"/></svg>Download for Android</button>
+        <button class="btn btn-ghost" id="help" type="button">Trouble installing?</button>
       </div>
       <p class="note" id="release-note">Free · Android 7 or newer</p>
     </section>
 
-    <section class="wrap about">
-      <h2>What it does</h2>
+    <section class="shots" aria-label="Screenshots">
+      <div class="wrap"><h2>Preview</h2></div>
+      <div class="strip">
+        <img src="assets/screens/home.webp" width="544" height="939" alt="NWFlix home screen with Trending Now, Top Rated and New Releases rows" loading="lazy">
+        <img src="assets/screens/detail.webp" width="544" height="939" alt="A movie page with cast photos and the list of available files" loading="lazy">
+        <img src="assets/screens/series.webp" width="544" height="939" alt="TV series and recently added rows on the home screen" loading="lazy">
+        <img src="assets/screens/downloads.webp" width="544" height="939" alt="The Downloads screen for watching without internet" loading="lazy">
+        <img class="wide" src="assets/screens/player.webp" width="1028" height="500" alt="The video player with subtitles, audio, speed and aspect buttons" loading="lazy">
+        <img class="wide" src="assets/screens/subtitles.webp" width="1028" height="500" alt="Subtitle choices and delay controls inside the player" loading="lazy">
+      </div>
+    </section>
+
+    <section id="about" class="wrap section">
+      <h2>About this app</h2>
+      <p>NWFlix looks through the chats and channels you already have in Telegram, finds the movies and series, and shows them with posters, ratings, cast photos and details. Tap one to watch. Nothing is uploaded, and NWFlix does not contain any movies.</p>
       <ul class="plain">
-        <li><strong>Finds your movies.</strong> It reads the videos in your own Telegram account. Nothing is uploaded.</li>
-        <li><strong>Plays them straight away.</strong> Watch while it loads, or download a movie to keep it on your phone.</li>
-        <li><strong>Remembers where you stopped.</strong> Pick up a movie again from the same minute.</li>
+        <li><strong>Finds your movies.</strong> It reads the videos in your own Telegram account and sorts them into Trending, Top Rated, New Releases, TV Series and more.</li>
+        <li><strong>Plays them straight away.</strong> Watch while it loads, or download a movie to keep it on your phone and watch without internet.</li>
+        <li><strong>A proper player.</strong> Subtitles, audio tracks, playback speed, picture in picture, sleep timer and screen lock.</li>
+        <li><strong>Remembers where you stopped.</strong> Pick up a movie again from the same minute, and keep your own list and favorites.</li>
         <li><strong>Plays most formats.</strong> A second player is built in for files that the normal one can't open.</li>
       </ul>
     </section>
 
-    <section id="install" class="wrap about">
+    <section class="wrap section">
+      <h2>App information</h2>
+      <dl class="info">
+        <div><dt>Developer</dt><dd>Mohammed Rinshan (NIGHTWALKER)</dd></div>
+        <div><dt>Price</dt><dd>Free</dd></div>
+        <div><dt>Requires</dt><dd>Android 7 or newer</dd></div>
+        <div><dt>Needs</dt><dd>A Telegram account</dd></div>
+        <div><dt>Contact</dt><dd><a href="mailto:rinshan602@gmail.com?subject=NWFlix%20help">rinshan602@gmail.com</a></dd></div>
+        <div><dt>Policies</dt><dd><a href="privacy.html">Privacy Policy</a> · <a href="terms.html">Terms</a> · <a href="disclaimer.html">Disclaimer</a></dd></div>
+      </dl>
+    </section>
+
+    <section id="install" class="wrap section">
       <h2>How to install</h2>
       <ol class="plain">
         <li>Tap <em>Download for Android</em>. We pick the right file for your phone and start the download.</li>
@@ -61,13 +101,13 @@
       <p class="note">NWFlix does not contain any movies. It only shows the files that are already in your Telegram. Use it only with content you are allowed to watch.</p>
     </section>
   </main>
+
   <footer class="wrap foot">
     <p class="links"><a href="privacy.html">Privacy Policy</a><a href="terms.html">Terms &amp; Conditions</a><a href="disclaimer.html">Disclaimer &amp; Copyright</a></p>
     <p>Made by Mohammed Rinshan (NIGHTWALKER).</p>
     <p class="tiny">NWFlix is not affiliated with or endorsed by Telegram. This product uses the TMDB API but is not endorsed or certified by TMDB. NWFlix does not host any movies.</p>
   </footer>
 
-  <!-- download dialog -->
   <div class="overlay" id="dl-overlay" role="dialog" aria-modal="true" aria-labelledby="dl-title">
     <div class="modal">
       <button class="close" type="button" data-close aria-label="Close">&times;</button>
@@ -116,7 +156,6 @@
     </div>
   </div>
 
-  <!-- trouble dialog -->
   <div class="overlay" id="help-overlay" role="dialog" aria-modal="true" aria-labelledby="help-title">
     <div class="modal">
       <button class="close" type="button" data-close aria-label="Close">&times;</button>
