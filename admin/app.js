@@ -74,6 +74,9 @@ async function load() {
   $("m-on").checked = !!d.maintenanceOn;
   $("m-title").value = d.maintenanceTitle || "";
   $("m-msg").value = d.maintenanceMessage || "";
+  $("mi-on").checked = !!d.maintenanceIosOn;
+  $("mi-title").value = d.maintenanceIosTitle || "";
+  $("mi-msg").value = d.maintenanceIosMessage || "";
   $("u-current").textContent = d.updCode
     ? "Published: version " + (d.updName || d.updCode) + " (code " + d.updCode + ")" + (d.updForce ? " - FORCED" : "") + ". 64-bit link: " + (d.updArm64 ? "yes" : "no") + ", 32-bit link: " + (d.updArm32 ? "yes" : "no") + "."
     : "No update is published.";
@@ -100,6 +103,12 @@ $("m-save").onclick = async () => {
     await saveConfig({ maintenanceOn: $("m-on").checked, maintenanceTitle: $("m-title").value.trim(), maintenanceMessage: $("m-msg").value.trim() });
     say("m-out", $("m-on").checked ? "Maintenance mode is ON." : "Maintenance mode is off.", true);
   } catch (e) { say("m-out", "Could not save: " + (e.code || e.message), false); }
+};
+$("mi-save").onclick = async () => {
+  try {
+    await saveConfig({ maintenanceIosOn: $("mi-on").checked, maintenanceIosTitle: $("mi-title").value.trim(), maintenanceIosMessage: $("mi-msg").value.trim() });
+    say("mi-out", $("mi-on").checked ? "iOS maintenance mode is ON." : "iOS maintenance mode is off.", true);
+  } catch (e) { say("mi-out", "Could not save: " + (e.code || e.message), false); }
 };
 $("a-send").onclick = async () => {
   const title = $("a-title").value.trim(), msg = $("a-msg").value.trim();
