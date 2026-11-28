@@ -3,7 +3,7 @@
 <head>
   <meta charset="utf-8">
   <meta name="viewport" content="width=device-width, initial-scale=1">
-  <meta http-equiv="Content-Security-Policy" content="default-src 'self'; script-src 'self'; style-src 'self' 'unsafe-inline'; img-src 'self' data:; font-src 'self'; connect-src https://firestore.googleapis.com https://en.wikipedia.org; base-uri 'none'; form-action 'none'; object-src 'none'">
+  <meta http-equiv="Content-Security-Policy" content="default-src 'self'; script-src 'self'; style-src 'self' 'unsafe-inline'; img-src 'self' data: https://i.ytimg.com; media-src 'self'; frame-src https://www.youtube-nocookie.com; font-src 'self'; connect-src https://firestore.googleapis.com https://en.wikipedia.org; base-uri 'none'; form-action 'none'; object-src 'none'">
   <meta name="referrer" content="strict-origin-when-cross-origin">
   <title>NWFlix – watch your Telegram movies</title>
   <meta name="description" content="NWFlix is an Android app that plays the movies from your own Telegram chats.">
@@ -58,13 +58,18 @@
     <section class="shots" aria-label="Screenshots">
       <div class="wrap"><h2>Preview</h2></div>
       <div class="strip">
-        <img src="assets/screens/home.webp" width="544" height="939" alt="NWFlix home screen with Trending Now, Top Rated and New Releases rows" loading="lazy">
-        <img src="assets/screens/detail.webp" width="544" height="939" alt="A movie page with cast photos and the list of available files" loading="lazy">
-        <img src="assets/screens/series.webp" width="544" height="939" alt="TV series and recently added rows on the home screen" loading="lazy">
-        <img src="assets/screens/downloads.webp" width="544" height="939" alt="The Downloads screen for watching without internet" loading="lazy">
-        <img class="wide" src="assets/screens/player.webp" width="1028" height="500" alt="The video player with subtitles, audio, speed and aspect buttons" loading="lazy">
-        <img class="wide" src="assets/screens/subtitles.webp" width="1028" height="500" alt="Subtitle choices and delay controls inside the player" loading="lazy">
+        <img src="assets/screens/01-home.webp" width="720" height="1280" alt="Home screen with rows for trending, top rated and new releases" loading="lazy">
+        <img src="assets/screens/02-explore.webp" width="720" height="1280" alt="Explore screen with search, genre chips and filters" loading="lazy">
+        <img src="assets/screens/03-details.webp" width="720" height="1280" alt="Movie page with cast and the available files" loading="lazy">
+        <img src="assets/screens/04-downloads.webp" width="720" height="1280" alt="Downloads screen for watching without internet" loading="lazy">
+        <img src="assets/screens/05-mylist.webp" width="720" height="1280" alt="My List with watchlist, favorites and history" loading="lazy">
+        <img src="assets/screens/06-settings.webp" width="720" height="1280" alt="Settings for playback, appearance, storage and privacy" loading="lazy">
       </div>
+    </section>
+
+    <section id="demo" class="wrap section" data-youtube="" data-file="" hidden>
+      <h2>See it in action</h2>
+      <div class="frame"></div>
     </section>
 
     <section id="about" class="wrap section">
@@ -169,6 +174,7 @@
     </div>
   </div>
 
+  <script src="video.js" defer></script>
   <script src="script.js"></script>
 </body>
 </html>
