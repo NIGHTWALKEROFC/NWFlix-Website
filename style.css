@@ -53,10 +53,8 @@ h1, h2, h3 { color: var(--text); font-weight: 600; margin: 0; }
 
 .shots { padding-top: 32px; }
 .shots h2 { font-size: 20px; margin-bottom: 14px; }
-.strip { display: flex; gap: 14px; overflow-x: auto; padding: 4px 20px 18px; scroll-snap-type: x proximity; scrollbar-width: thin; scrollbar-color: var(--line) transparent; }
-.strip img { height: 430px; width: auto; flex: none; scroll-snap-align: start; }
-.strip img.wide { height: 300px; }
-@media (min-width: 1000px) { .strip { padding-left: calc((100vw - 960px) / 2 + 20px); } }
+.strip { display: flex; gap: 14px; overflow-x: auto; padding: 4px 20px 18px max(20px, calc((100vw - 960px) / 2 + 20px)); scroll-snap-type: x proximity; scrollbar-width: thin; scrollbar-color: var(--line) transparent; }
+.strip img { height: 520px; width: auto; flex: none; scroll-snap-align: start; border-radius: 12px; }
 
 .section { padding-top: 36px; padding-bottom: 4px; }
 .section h2 { font-size: 20px; margin-bottom: 12px; }
@@ -107,7 +105,14 @@ h1, h2, h3 { color: var(--text); font-weight: 600; margin: 0; }
   .facts b { font-size: 13px; }
   .actions .btn { width: 100%; }
   .nav a:nth-child(-n+2) { display: none; }
-  .strip img { height: 380px; }
-  .strip img.wide { height: 250px; }
+  .strip img { height: 440px; }
   .info dt { width: 84px; }
 }
+
+[hidden] { display: none !important; }
+.frame { position: relative; aspect-ratio: 16 / 9; max-width: 720px; background: #000; border-radius: 14px; overflow: hidden; border: 1px solid var(--line); }
+.frame video, .frame iframe { width: 100%; height: 100%; border: 0; display: block; }
+.frame .play { position: relative; width: 100%; height: 100%; padding: 0; border: 0; background: #000; cursor: pointer; }
+.frame .play img { width: 100%; height: 100%; object-fit: cover; opacity: .85; display: block; }
+.frame .play i { position: absolute; inset: 0; margin: auto; width: 68px; height: 68px; border-radius: 50%; background: var(--acc); }
+.frame .play i::after { content: ""; position: absolute; left: 27px; top: 21px; border-left: 20px solid var(--acc-ink); border-top: 13px solid transparent; border-bottom: 13px solid transparent; }
