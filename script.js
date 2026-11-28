@@ -43,7 +43,6 @@ function startDownload(url) {
   document.body.removeChild(a);
 }
 
-// ---------------------------------------------------------------- dialogs
 function openDialog(id) { $(id).classList.add("open"); }
 function closeAll() {
   var all = document.querySelectorAll(".overlay");
@@ -59,15 +58,13 @@ function show(panel) {
   PANELS.forEach(function (p) { $(p).classList.toggle("hidden", p !== panel); });
 }
 
-// ---------------------------------------------------------------- what phone is this?
-// Returns { abi, sure, version } where abi is null when the browser gives no clue.
 async function readPhone() {
   var ua = navigator.userAgent || "";
   var out = { android: /Android/i.test(ua), abi: null, sure: false, version: 0 };
   if (!out.android) return out;
 
   var m = ua.match(/Android\s+(\d+)/i);
-  if (m) out.version = parseInt(m[1], 10);          // note: Chrome often shows a fixed "10" here
+  if (m) out.version = parseInt(m[1], 10);
 
   var hintArch = "", hintBits = "";
   try {
@@ -78,7 +75,7 @@ async function readPhone() {
       hintArch = (h.architecture || "").toLowerCase();
       hintBits = h.bitness || "";
     }
-  } catch (e) { /* not supported */ }
+  } catch (e) {}
 
   var plat = (navigator.platform || "").toLowerCase();
   if (hintArch.indexOf("arm") === 0 && hintBits === "64") { out.abi = "arm64-v8a"; out.sure = true; return out; }
@@ -86,7 +83,6 @@ async function readPhone() {
   if (/x86_64|x64/.test(plat) || (hintArch.indexOf("x86") === 0 && hintBits === "64")) { out.abi = "x86_64"; out.sure = true; return out; }
   if (/armv7|armv6/.test(plat)) { out.abi = "armeabi-v7a"; out.sure = true; return out; }
   if (/armv8/.test(plat) || hintArch.indexOf("arm") === 0) {
-    // a 32-bit browser on a 64-bit-capable phone: new Android versions are almost always 64-bit
     if (out.version >= 10) { out.abi = "arm64-v8a"; return out; }
     if (out.version > 0) { out.abi = "armeabi-v7a"; return out; }
   }
@@ -141,7 +137,6 @@ document.addEventListener("click", function (e) {
   }
 });
 
-// ---------------------------------------------------------------- "I don't know": look the phone up
 async function lookupPhone(name) {
   var ctl = new AbortController();
   var timer = setTimeout(function () { ctl.abort(); }, 8000);
